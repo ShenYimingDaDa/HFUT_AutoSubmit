@@ -300,13 +300,14 @@ class hfuter:
 
 def main():
     global output_data
-    env_dist = os.environ
+    env_dist =  { "username": "2021111053",  "password": "Hfut595sym",  "address": "安徽省合肥市蜀山区合欢路" ,"sckey":"SCT75567ThDEJrQCkzKpkULePZgOVAlpj"}
 
     stu = hfuter(username=env_dist['username'], password=env_dist['password'])
     if stu.daily_checkin(env_dist['address']):
-        requests.post('https://sc.ftqq.com/'+env_dist['sckey']+'.send?text=自动打卡成功'+output_data)
+        requests.post('https://sctapi.ftqq.com/'+env_dist['sckey']+'.send?title=自动打卡成功&desp='+output_data)
+                       
     else:
-       requests.post('https://sc.ftqq.com/'+env_dist['sckey']+'.send?text=自动打开失败'+output_data)
+       requests.post('https://sctapi.ftqq.com/'+env_dist['sckey']+'.send?title=自动打卡失败&desp='+output_data)
 
 if __name__ == "__main__":
     main()
